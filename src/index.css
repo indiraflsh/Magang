@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Fredoka', 'Comic Neue', system-ui, sans-serif;
+    background-color: #FFFDF0;
+  }
+}
+
+/* Comic halftone and polka dot backgrounds */
+.comic-dots-bg {
+  background-color: #FFFDF0;
+  background-image: radial-gradient(#cbd5e1 2px, transparent 2px);
+  background-size: 20px 20px;
+}
+
+.comic-dots-yellow {
+  background-color: #FEF9C3;
+  background-image: radial-gradient(#FACC15 2px, transparent 2px);
+  background-size: 16px 16px;
+}
+
+.comic-dots-blue {
+  background-color: #E0F2FE;
+  background-image: radial-gradient(#38BDF8 2px, transparent 2px);
+  background-size: 16px 16px;
+}
+
+.comic-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.04),
+    rgba(0, 0, 0, 0.04) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* Comic panels with thick border and solid offset shadow */
+.comic-card {
+  background: #ffffff;
+  border: 2.5px solid #000000;
+  border-radius: 1.25rem;
+  box-shadow: 4px 4px 0px 0px #000000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.comic-card-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #000000;
+}
+
+/* Comic buttons with tactile push feel */
+.comic-btn-primary {
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px 0px #000000;
+  font-weight: 700;
+  border-radius: 0.875rem;
+  transition: all 0.1s ease;
+}
+
+.comic-btn-primary:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4.5px 4.5px 0px 0px #000000;
+}
+
+.comic-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #000000;
+}
+
+/* Comic action sound tags (POW, BAM, KEREN) */
+.comic-tag-pow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.55rem;
+  font-weight: 800;
+  font-size: 0.75rem;
+  border: 2px solid #000000;
+  border-radius: 9999px;
+  box-shadow: 2px 2px 0px 0px #000000;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* Speech bubble with tail */
+.comic-speech-bubble {
+  position: relative;
+  background: #ffffff;
+  border: 2.5px solid #000000;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 0px 0px #000000;
+}
+
+.comic-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 24px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #000000;
+}
+
+/* Comic input fields */
+.comic-input {
+  border: 2px solid #000000 !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 2.5px 2.5px 0px 0px #000000 !important;
+  transition: all 0.15s ease !important;
+}
+
+.comic-input:focus {
+  outline: none !important;
+  transform: translate(-1px, -1px) !important;
+  box-shadow: 4px 4px 0px 0px #000000 !important;
+}
+
+/* Floating comic sticker bounce animation */
+@keyframes comic-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(2deg); }
+}
+
+.comic-animate-float {
+  animation: comic-float 3s ease-in-out infinite;
+}
+

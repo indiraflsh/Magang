@@ -1,0 +1,105 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information for students and mentors",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 128 },
+        "full_name": { "type": "string", "maxLength": 100 },
+        "role": { "type": "string", "enum": ["student", "mentor", "admin"] },
+        "avatar_url": { "type": "string", "maxLength": 2048 },
+        "institution": { "type": "string", "maxLength": 150 },
+        "student_id_number": { "type": "string", "maxLength": 50 },
+        "phone": { "type": "string", "maxLength": 30 },
+        "department": { "type": "string", "maxLength": 100 },
+        "created_at": { "type": "string", "maxLength": 64 },
+        "updated_at": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "email", "full_name", "role", "created_at", "updated_at"]
+    },
+    "AttendanceRecord": {
+      "title": "AttendanceRecord",
+      "description": "Clock-in and clock-out attendance logs for interns",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "user_id": { "type": "string", "maxLength": 128 },
+        "student_name": { "type": "string", "maxLength": 100 },
+        "date": { "type": "string", "maxLength": 20 },
+        "day_name": { "type": "string", "maxLength": 20 },
+        "clock_in": { "type": "string", "maxLength": 30 },
+        "clock_out": { "type": "string", "maxLength": 30 },
+        "duration_hours": { "type": "number" },
+        "status": { "type": "string", "maxLength": 50 },
+        "approval_status": { "type": "string", "enum": ["approved", "pending", "rejected"] },
+        "location": { "type": "string", "maxLength": 200 },
+        "created_at": { "type": "string", "maxLength": 64 },
+        "updated_at": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "user_id", "student_name", "date", "status", "approval_status", "created_at"]
+    },
+    "DailyJournal": {
+      "title": "DailyJournal",
+      "description": "Daily work log and learning report submitted by students",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "user_id": { "type": "string", "maxLength": 128 },
+        "student_name": { "type": "string", "maxLength": 100 },
+        "date": { "type": "string", "maxLength": 20 },
+        "activity_title": { "type": "string", "maxLength": 150 },
+        "activity_description": { "type": "string", "maxLength": 2000 },
+        "challenges": { "type": "string", "maxLength": 1000 },
+        "solutions_or_results": { "type": "string", "maxLength": 1000 },
+        "attachment_url": { "type": "string", "maxLength": 2048 },
+        "learning_category": { "type": "string", "maxLength": 100 },
+        "duration_hours": { "type": "number" },
+        "approval_status": { "type": "string", "enum": ["draft", "submitted", "approved", "rejected"] },
+        "mentor_feedback": { "type": "string", "maxLength": 1000 },
+        "verified_by": { "type": "string", "maxLength": 128 },
+        "verified_at": { "type": "string", "maxLength": 64 },
+        "created_at": { "type": "string", "maxLength": 64 },
+        "updated_at": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "user_id", "student_name", "date", "activity_title", "activity_description", "learning_category", "duration_hours", "approval_status", "created_at"]
+    },
+    "StudentProgress": {
+      "title": "StudentProgress",
+      "description": "Aggregated internship progress and stats for a student",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "user_id": { "type": "string", "maxLength": 128 },
+        "attendance_status": { "type": "string", "enum": ["not_clocked_in", "clocked_in", "clocked_out"] },
+        "clock_in_time": { "type": "string", "maxLength": 30 },
+        "clock_out_time": { "type": "string", "maxLength": 30 },
+        "last_attendance_date": { "type": "string", "maxLength": 20 },
+        "streak_days": { "type": "number" },
+        "accumulated_hours": { "type": "number" },
+        "total_required_hours": { "type": "number" },
+        "updated_at": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "user_id", "attendance_status", "streak_days", "accumulated_hours", "total_required_hours", "updated_at"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile information"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": "AttendanceRecord",
+      "description": "Intern attendance check-ins and check-outs"
+    },
+    "/journals/{journalId}": {
+      "schema": "DailyJournal",
+      "description": "Daily journals and logs created by interns"
+    },
+    "/progress/{progressId}": {
+      "schema": "StudentProgress",
+      "description": "Student internship progress summary"
+    }
+  }
+}

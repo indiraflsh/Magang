@@ -1,0 +1,6 @@
+{
+  "name": "Sistem Magang Komik Seru",
+  "description": "Sistem manajemen & tracking magang interaktif bertema komik lucu: presensi harian, logbook petualangan, dan review mentor.",
+  "requestFramePermissions": ["camera", "geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
